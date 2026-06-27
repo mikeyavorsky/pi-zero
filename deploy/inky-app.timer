@@ -1,0 +1,14 @@
+[Unit]
+Description=Run inky-app periodically (and after every boot)
+
+[Timer]
+# Power-loss / reboot recovery: fire 2 min after boot once the system settles.
+OnBootSec=2min
+# Repeat interval, measured from the end of the last run. Edit + push to change
+# the cadence over the air — the bootstrap re-applies this file on its next run.
+OnUnitActiveSec=10min
+# Run a missed job at boot if the box was off when it was due.
+Persistent=true
+
+[Install]
+WantedBy=timers.target

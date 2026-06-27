@@ -1,0 +1,7 @@
+# Extra deps for weather-phat.py, installed into the inky venv by deploy/run.sh.
+# inky, numpy and Pillow already come from the venv / apt, so they're not listed.
+# All of these are pure-Python (no compilation needed on the Pi Zero's armv6).
+
+font-fredoka-one>=0.0.4   # provides `from font_fredoka_one import FredokaOne`
+requests>=2.25            # fetches the Open-Meteo forecast
+geocoder>=1.38            # turns "Sheffield, GB" into lat/long

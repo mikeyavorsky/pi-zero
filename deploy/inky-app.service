@@ -1,0 +1,14 @@
+[Unit]
+Description=Update inky-app from git and run it on the Inky display
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=mike
+WorkingDirectory=/home/mike/inky-app
+# Stable entry point installed by install-inky-service.sh. It pulls this repo,
+# re-syncs these unit files (OTA), then runs deploy/run.sh.
+ExecStart=/home/mike/inky-app-bootstrap.sh
+# Don't hang forever if the network/git is unavailable.
+TimeoutStartSec=300
