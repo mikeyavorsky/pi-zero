@@ -70,7 +70,7 @@ def get_coords(address):
 def get_weather(address):
     coords = get_coords(address)
     weather = {}
-    res = requests.get("https://api.open-meteo.com/v1/forecast?latitude=" + str(coords[0]) + "&longitude=" + str(coords[1]) + "&current_weather=true&temperature_unit=fahrenheit")
+    res = requests.get("https://api.open-meteo.com/v1/forecast?latitude=" + str(coords[0]) + "&longitude=" + str(coords[1]) + "&current_weather=true&temperature_unit=fahrenheit&windspeed_unit=mph")
     if res.status_code == 200:
         j = json.loads(res.text)
         current = j["current_weather"]
@@ -170,7 +170,7 @@ draw.text((72, 34), "T", inky_display.WHITE, font=font)
 draw.text((92, 34), "{}°F".format(temperature), inky_display.WHITE if temperature < WARNING_TEMP else inky_display.RED, font=font)
 
 draw.text((72, 58), "W", inky_display.WHITE, font=font)
-draw.text((92, 58), "{}kmh".format(windspeed), inky_display.WHITE, font=font)
+draw.text((92, 58), "{}mph".format(windspeed), inky_display.WHITE, font=font)
 
 # Draw the current weather icon over the backdrop
 if weather_icon is not None:
