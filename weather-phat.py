@@ -56,7 +56,7 @@ inky_display.set_border(inky_display.BLACK)
 
 CITY = "Boston"
 COUNTRYCODE = "US"
-WARNING_TEMP = 25.0
+WARNING_TEMP = 77.0  # °F (was 25°C); temp shown in red at or above this
 
 
 # Convert a city name and country code to latitude and longitude
@@ -70,7 +70,7 @@ def get_coords(address):
 def get_weather(address):
     coords = get_coords(address)
     weather = {}
-    res = requests.get("https://api.open-meteo.com/v1/forecast?latitude=" + str(coords[0]) + "&longitude=" + str(coords[1]) + "&current_weather=true")
+    res = requests.get("https://api.open-meteo.com/v1/forecast?latitude=" + str(coords[0]) + "&longitude=" + str(coords[1]) + "&current_weather=true&temperature_unit=fahrenheit")
     if res.status_code == 200:
         j = json.loads(res.text)
         current = j["current_weather"]
@@ -167,7 +167,7 @@ datetime = time.strftime("%d/%m %H:%M")
 draw.text((41, 12), datetime, inky_display.WHITE, font=font)
 
 draw.text((72, 34), "T", inky_display.WHITE, font=font)
-draw.text((92, 34), "{}°C".format(temperature), inky_display.WHITE if temperature < WARNING_TEMP else inky_display.RED, font=font)
+draw.text((92, 34), "{}°F".format(temperature), inky_display.WHITE if temperature < WARNING_TEMP else inky_display.RED, font=font)
 
 draw.text((72, 58), "W", inky_display.WHITE, font=font)
 draw.text((92, 58), "{}kmh".format(windspeed), inky_display.WHITE, font=font)
