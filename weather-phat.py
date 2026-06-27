@@ -33,7 +33,7 @@ except ImportError:
 
 print("""Inky pHAT: Weather
 
-Displays weather information for a given location. The default location is Sheffield-on-Sea.
+Displays weather information for a given location. The default location is Boston.
 
 """)
 
@@ -54,8 +54,8 @@ inky_display.set_border(inky_display.BLACK)
 
 # Details to customise your weather display
 
-CITY = "Sheffield"
-COUNTRYCODE = "GB"
+CITY = "Boston"
+COUNTRYCODE = "US"
 WARNING_TEMP = 25.0
 
 
